@@ -1,0 +1,21 @@
+{
+    "name": "Noticias App",
+    "short_name": "Noticias",
+    "description": "App de noticias con notificaciones",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#667eea",
+    "theme_color": "#667eea",
+    "icons": [
+        {
+            "src": "https://via.placeholder.com/192x192/667eea/ffffff?text=N",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://via.placeholder.com/512x512/667eea/ffffff?text=Noticias",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
