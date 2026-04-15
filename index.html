@@ -7,13 +7,17 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
     
-    <!-- ✅ NUEVO OneSignal SDK v16 -->
+    <!-- ✅ CÓDIGO OFICIAL ONESIGNAL -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(async function(OneSignal) {
             await OneSignal.init({
                 appId: "f412bf77-9c0e-4c0e-9aca-4deb21dcbd20",
+                safari_web_id: "web.onesignal.auto.6514249a-4cb8-451b-a889-88f5913c9a7f",
+                notifyButton: {
+                    enable: true,
+                },
             });
         });
     </script>
@@ -22,9 +26,6 @@
     <header>
         <h1>📰 Noticias App</h1>
         <p>Recibe notificaciones de las últimas noticias</p>
-        <button id="btn-notificaciones" onclick="suscribirNotificaciones()">
-            🔔 Activar Notificaciones
-        </button>
     </header>
     
     <main id="noticias-container">
@@ -65,35 +66,13 @@
             }
         }
         
-        // ✅ NUEVA función para suscribirse con SDK v16
-        async function suscribirNotificaciones() {
-            try {
-                const OneSignal = window.OneSignal;
-                if (OneSignal) {
-                    await OneSignal.Slidedown.promptPush();
-                    console.log('Prompt de notificaciones mostrado');
-                } else {
-                    console.log('OneSignal no está listo aún');
-                }
-            } catch (error) {
-                console.error('Error al suscribirse:', error);
-            }
-        }
-        
         cargarNoticias();
         setInterval(cargarNoticias, 300000);
     </script>
 
-    <!-- Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/Noticias-EDU/sw.js')
-                .then(function(registration) {
-                    console.log('Service Worker registrado:', registration);
-                })
-                .catch(function(error) {
-                    console.log('Error al registrar Service Worker:', error);
-                });
+            navigator.serviceWorker.register('/Noticias-EDU/sw.js');
         }
     </script>
 </body>
