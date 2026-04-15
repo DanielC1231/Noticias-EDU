@@ -3,71 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi App de Noticias</title>
-    <!-- Enlace al manifiesto de PWA (Generado con PWA Builder) -->
+    <title>Noticias App</title>
     <link rel="manifest" href="manifest.json">
-    
-    <!-- Script de OneSignal (Notificaciones) -->
-    <script src="https://onesignal.com" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- OneSignal SDK -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
     <script>
-      window.OneSignal = window.OneSignal || [];
-      OneSignal.push(function() {
-        OneSignal.init({
-          appId: "TU_ID_DE_ONESIGNAL", // Reemplaza con tu ID
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "TU_APP_ID_DE_ONESIGNAL_AQUI",
+            });
         });
-      });
     </script>
-
-    <style>
-        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
-        .noticia { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-    </style>
 </head>
 <body>
-
-    <h1>Noticias de Hoy</h1>
-    <div id="contenedor-noticias">
-        <p>Cargando noticias...</p>
-    </div>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-      import { initializeApp } from "https://gstatic.com";
-      import { getFirestore, collection, getDocs } from "https://gstatic.com";
-
-      // Configuración de tu proyecto de Firebase
-      const firebaseConfig = {
-        apiKey: "TU_API_KEY",
-        authDomain: "TU_://firebaseapp.com",
-        projectId: "TU_PROYECTO_ID",
-        storageBucket: "TU_://appspot.com",
-        messagingSenderId: "TU_ID_MENSAJERIA",
-        appId: "TU_APP_ID"
-      };
-
-      // Inicializar Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-
-      // Función para leer noticias
-      async function cargarNoticias() {
-        const querySnapshot = await getDocs(collection(db, "noticias"));
-        const contenedor = document.getElementById('contenedor-noticias');
-        contenedor.innerHTML = '';
+    <header>
+        <h1>📰 Noticias App</h1>
+        <p>Recibe notificaciones de las últimas noticias</p>
+    </header>
+    
+    <main>
+        <div class="noticia">
+            <h2>Primera Noticia de Ejemplo</h2>
+            <p>Este es un ejemplo de cómo se verán tus noticias. Aquí irá el contenido.</p>
+            <small>Publicado: 14 de abril, 2026</small>
+        </div>
         
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          contenedor.innerHTML += `
-            <div class="noticia">
-                <h3>${data.titulo}</h3>
-                <p>${data.contenido}</p>
-            </div>
-          `;
-        });
-      }
-
-      cargarNoticias();
-    </script>
+        <div class="noticia">
+            <h2>Segunda Noticia</h2>
+            <p>Otra noticia de ejemplo para mostrar el diseño.</p>
+            <small>Publicado: 13 de abril, 2026</small>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2026 Noticias App - Proyecto Colaborativo</p>
+    </footer>
 </body>
 </html>
