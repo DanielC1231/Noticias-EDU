@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi App de Noticias</title>
+    <!-- Enlace al manifiesto de PWA (Generado con PWA Builder) -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Script de OneSignal (Notificaciones) -->
+    <script src="https://onesignal.com" defer></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "TU_ID_DE_ONESIGNAL", // Reemplaza con tu ID
+        });
+      });
+    </script>
+
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+        .noticia { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+
+    <h1>Noticias de Hoy</h1>
+    <div id="contenedor-noticias">
+        <p>Cargando noticias...</p>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      import { initializeApp } from "https://gstatic.com";
+      import { getFirestore, collection, getDocs } from "https://gstatic.com";
+
+      // Configuración de tu proyecto de Firebase
+      const firebaseConfig = {
+        apiKey: "TU_API_KEY",
+        authDomain: "TU_://firebaseapp.com",
+        projectId: "TU_PROYECTO_ID",
+        storageBucket: "TU_://appspot.com",
+        messagingSenderId: "TU_ID_MENSAJERIA",
+        appId: "TU_APP_ID"
+      };
+
+      // Inicializar Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Función para leer noticias
+      async function cargarNoticias() {
+        const querySnapshot = await getDocs(collection(db, "noticias"));
+        const contenedor = document.getElementById('contenedor-noticias');
+        contenedor.innerHTML = '';
+        
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          contenedor.innerHTML += `
+            <div class="noticia">
+                <h3>${data.titulo}</h3>
+                <p>${data.contenido}</p>
+            </div>
+          `;
+        });
+      }
+
+      cargarNoticias();
+    </script>
+</body>
+</html>
