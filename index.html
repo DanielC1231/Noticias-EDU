@@ -6,12 +6,13 @@
     <title>Noticias App</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
-    <!-- OneSignal SDK -->
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    
+    <!-- ✅ NUEVO OneSignal SDK v16 -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-            OneSignal.init({
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
                 appId: "f412bf77-9c0e-4c0e-9aca-4deb21dcbd20",
             });
         });
@@ -64,17 +65,26 @@
             }
         }
         
-        function suscribirNotificaciones() {
-            OneSignal.push(function() {
-                OneSignal.showNativePrompt();
-            });
+        // ✅ NUEVA función para suscribirse con SDK v16
+        async function suscribirNotificaciones() {
+            try {
+                const OneSignal = window.OneSignal;
+                if (OneSignal) {
+                    await OneSignal.Slidedown.promptPush();
+                    console.log('Prompt de notificaciones mostrado');
+                } else {
+                    console.log('OneSignal no está listo aún');
+                }
+            } catch (error) {
+                console.error('Error al suscribirse:', error);
+            }
         }
         
         cargarNoticias();
         setInterval(cargarNoticias, 300000);
     </script>
 
-    <!-- ✅ Service Worker con ruta correcta -->
+    <!-- Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/Noticias-EDU/sw.js')
