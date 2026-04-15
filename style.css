@@ -24,10 +24,32 @@ header h1 {
     margin-bottom: 0.5rem;
 }
 
+#btn-notificaciones {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#btn-notificaciones:hover {
+    transform: scale(1.05);
+}
+
 main {
     max-width: 800px;
     margin: 2rem auto;
     padding: 0 1rem;
+}
+
+.cargando, .error {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
 }
 
 .noticia {
@@ -42,6 +64,14 @@ main {
 .noticia:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.noticia-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 .noticia h2 {
@@ -75,5 +105,9 @@ footer {
     
     .noticia {
         padding: 1rem;
+    }
+    
+    #btn-notificaciones {
+        width: 90%;
     }
 }
