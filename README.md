@@ -13,4 +13,18 @@ Funcionalidades del Sistema
 🤝 Contribuciones
 ¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar la pedagogía de las noticias o quieres optimizar el sistema de notificaciones, abre un Pull Request.
 
+📲 Guía de Instalación (PWA)
+El SCIM está desarrollado como una Progressive Web App (PWA), lo que permite instalarla en dispositivos móviles sin pasar por una tienda oficial, garantizando un acceso directo y ligero.
+1. Android (Chrome)
+Abre el enlace de la aplicación en Chrome.
+Toca el menú de tres puntos (esquina superior derecha).
+Selecciona "Instalar aplicación" o "Agregar a la pantalla de inicio".
+Confirma en "Agregar" y el icono aparecerá en tu menú de aplicaciones.
+2. iOS (Safari)
+Abre el enlace de la aplicación en Safari.
+Toca el botón Compartir (el icono del cuadrado con la flecha hacia arriba).
+Desliza hacia abajo y selecciona "Agregar al inicio".
+Toca "Agregar" en la esquina superior derecha para finalizar.
+
+
 Este proyecto fue creado con fines educativos para la Comunidad Educativa Juan Pablo II.
